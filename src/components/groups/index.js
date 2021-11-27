@@ -1,48 +1,38 @@
 import React, { useEffect, useState } from "react";
 import "./styles.less";
+import { List } from "antd";
+import RenderGroup from "./renderGroup";
 import { fetchGroups } from "../../store/groups";
 import { useDispatch, useSelector } from "react-redux";
-import { List, Avatar, Space } from "antd";
-import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
-
-const IconText = ({ icon, text }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
-
-const renderGroup = (group) => {
-  console.log("-------- 111111324 --------");
-  const { name = "", description = "" } = group;
-  return (
-    <List.Item
-      key={name}
-      actions={[
-        <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-        <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-        <IconText
-          icon={MessageOutlined}
-          text="2"
-          key="list-vertical-message"
-        />,
-      ]}
-    >
-      {name}
-    </List.Item>
-  );
-};
+import { DEFAULT_PAGE_SIZE } from "../../constants";
+// import { useLocation } from "react-router-dom";
 
 const Groups = () => {
+  // let location = useLocation();
+  // console.log("location ----", location);
+  // const { search } = location;
   const [current, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const dispatch = useDispatch();
   const groups = useSelector((state) => state.groups?.data);
   const isLoading = useSelector((state) => state.groups?.isLoading);
   const total = useSelector((state) => state.groups?.total);
   useEffect(() => {
     fetchGroupsByPagination(current, pageSize);
+    // eslint-disable-next-line
   }, [current, pageSize]);
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(search);
+  //   let page = 0;
+  //   let size = 10;
+  //   for (const [key, value] of urlParams.entries()) {
+  //     if (key === "page") {
+  //       page = value;
+  //     } else {
+  //       size = value;
+  //     }
+  //   }
+  // }, []);
 
   const fetchGroupsByPagination = (current, pageSize) => {
     const limit = pageSize;
@@ -56,8 +46,7 @@ const Groups = () => {
   };
 
   return (
-    <>
-      <div>Groups</div>
+    <div className="groups-container">
       <List
         loading={isLoading}
         itemLayout="vertical"
@@ -70,9 +59,9 @@ const Groups = () => {
           onChange: handlePageChange,
         }}
         dataSource={groups}
-        renderItem={renderGroup}
+        renderItem={RenderGroup}
       />
-    </>
+    </div>
   );
 };
 

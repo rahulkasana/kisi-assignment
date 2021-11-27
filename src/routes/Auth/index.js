@@ -5,7 +5,9 @@ import "./styles.less";
 import Sidebar from "../../components/sidebar";
 import Header from "../../components/header";
 import Groups from "../../components/groups";
+import GroupLocks from "../../components/groupLocks";
 import Locks from "../../components/locks";
+import AssignLocks from "../../components/modals/assignLocks";
 import { PATHS } from "../../constants";
 import { useDispatch } from "react-redux";
 import { initialize } from "../../store/kisi";
@@ -27,10 +29,12 @@ const AuthRoutes = () => {
           <Content className="site-layout-background">
             <Routes>
               <Route path={PATHS.GROUPS} element={<Groups />} />
+              <Route path={PATHS.GROUP_LOCKS} element={<GroupLocks />} />
               <Route path={PATHS.LOCKS} element={<Locks />} />
             </Routes>
           </Content>
           <Footer>footer</Footer>
+          <AssignLocks />
         </Layout>
       </Layout>
     </>
