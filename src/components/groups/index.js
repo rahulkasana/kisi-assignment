@@ -42,18 +42,17 @@ const Groups = () => {
   const total = useSelector((state) => state.groups?.total);
   useEffect(() => {
     fetchGroupsByPagination(current, pageSize);
-  }, []);
+  }, [current, pageSize]);
 
-  const fetchGroupsByPagination = (currentPage, currentPageSize) => {
-    const limit = currentPageSize;
-    const offset = (currentPage - 1) * currentPageSize;
+  const fetchGroupsByPagination = (current, pageSize) => {
+    const limit = pageSize;
+    const offset = (current - 1) * pageSize;
     dispatch(fetchGroups(limit, offset));
   };
 
   const handlePageChange = (page, pageSize) => {
     setCurrentPage(page);
     setPageSize(pageSize);
-    fetchGroupsByPagination(page, pageSize);
   };
 
   return (
@@ -64,11 +63,11 @@ const Groups = () => {
         itemLayout="vertical"
         size="large"
         pagination={{
-          onChange: handlePageChange,
-          pageSize,
           current,
-          showSizeChanger: true,
+          pageSize,
           total,
+          showSizeChanger: true,
+          onChange: handlePageChange,
         }}
         dataSource={groups}
         renderItem={renderGroup}
