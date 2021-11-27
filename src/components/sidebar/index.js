@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import {
-  UploadOutlined,
+  LockOutlined,
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
+import "./styles.less";
+import KisiLogo from "../../assets/icons/kisi.svg";
+import { Link } from "react-router-dom";
+import { PATHS } from "../../constants";
+
 const { Sider } = Layout;
 
 const Sidebar = (props) => {
@@ -17,16 +22,16 @@ const Sidebar = (props) => {
         toggleCollapsed(visible);
       }}
     >
-      <div className="logo" />
+      <img src={KisiLogo} alt="kisi-logo" className="logo" />
       <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-        <Menu.Item key="1" icon={<UploadOutlined />}>
-          Option 1
+        <Menu.Item key="1" icon={<UserOutlined />}>
+          <Link to={PATHS.GROUPS}>Groups</Link>
         </Menu.Item>
-        <Menu.Item key="2" icon={<UserOutlined />}>
-          Option 2
+        <Menu.Item key="2" icon={<LockOutlined />}>
+          <Link to={PATHS.LOCKS}>Locks</Link>
         </Menu.Item>
-        <Menu.Item key="9" icon={<VideoCameraOutlined />}>
-          Files
+        <Menu.Item key="3" icon={<VideoCameraOutlined />}>
+          Showcase
         </Menu.Item>
       </Menu>
     </Sider>

@@ -4,3 +4,8 @@ export const REQUEST_TYPE = {
   PUT: "put",
   DELETE: "delete",
 };
+
+export const PATHS = {
+  GROUPS: "/groups",
+  LOCKS: "/locks",
+};
