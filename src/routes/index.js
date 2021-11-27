@@ -1,9 +1,8 @@
 import React, { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Spin } from "antd";
-import Auth from "./Auth";
 
-//const Auth = lazy(() => import("./Auth"));
+const Auth = lazy(() => import("./Auth"));
 
 function AppRoutes() {
   const loadingState = () => {
@@ -14,10 +13,6 @@ function AppRoutes() {
       <Suspense fallback={loadingState()}>
         <BrowserRouter>
           <Auth />
-          {/*<Routes>*/}
-          {/*  <Route path="/" element={<div>2222211</div>} />*/}
-          {/*</Routes>*/}
-          <div>111</div>
         </BrowserRouter>
       </Suspense>
     </>

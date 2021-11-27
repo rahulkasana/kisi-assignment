@@ -1,5 +1,4 @@
 import "./App.less";
-import { Button } from "antd";
 import Kisi from "kisi-client";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -25,9 +24,6 @@ function App() {
   return (
     <Provider store={store}>
       <Routes />
-      <Button onClick={initializeKisi} type="primary">
-        Learn
-      </Button>
     </Provider>
   );
 }
