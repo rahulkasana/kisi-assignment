@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout } from "antd";
 import { Routes, Route } from "react-router-dom";
 import "./styles.less";
@@ -7,9 +7,15 @@ import Header from "../../components/header";
 import Groups from "../../components/groups";
 import Locks from "../../components/locks";
 import { PATHS } from "../../constants";
+import { useDispatch } from "react-redux";
+import { initialize } from "../../store/kisi";
 const { Footer, Content } = Layout;
 
 const AuthRoutes = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(initialize());
+  }, [dispatch]);
   return (
     <>
       <Layout className="vh-100">
