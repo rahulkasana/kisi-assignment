@@ -15,7 +15,9 @@ const AuthRoutes = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(initialize());
-  }, [dispatch]);
+    //This solution is no longer needed on es-lint-plugin-react-hooks@4.1.0 and above.
+    // eslint-disable-next-line
+  }, []);
   return (
     <>
       <Layout className="vh-100">
