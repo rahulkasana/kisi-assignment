@@ -1,4 +1,4 @@
-export default (state = {}, action = {}) => {
+const LocksReducer = (state = {}, action = {}) => {
   const { type, payload = {} } = action;
   switch (type) {
     default: {
@@ -6,3 +6,5 @@ export default (state = {}, action = {}) => {
     }
   }
 };
+
+export default LocksReducer;

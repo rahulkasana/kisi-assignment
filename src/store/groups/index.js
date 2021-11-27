@@ -1,4 +1,4 @@
-export default (state = {}, action = {}) => {
+const GroupsReducer = (state = {}, action = {}) => {
   const { type, payload = {} } = action;
   switch (type) {
     default: {
@@ -6,3 +6,5 @@ export default (state = {}, action = {}) => {
     }
   }
 };
+
+export default GroupsReducer;
