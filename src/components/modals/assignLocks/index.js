@@ -15,15 +15,17 @@ const AssignLocks = () => {
 
   const onFinish = (values) => {
     const { locks } = values;
-    const lockId = locks[0].value;
-    dispatch(
-      createGroupLock({
-        group_lock: {
-          group_id: data.groupId,
-          lock_id: lockId,
-        },
-      })
-    );
+    locks.forEach((lock) => {
+      const { value } = lock;
+      dispatch(
+        createGroupLock({
+          group_lock: {
+            group_id: data.groupId,
+            lock_id: value,
+          },
+        })
+      );
+    });
     dispatch(close());
   };
 
