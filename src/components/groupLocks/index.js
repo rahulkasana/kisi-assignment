@@ -14,15 +14,13 @@ import { DeleteOutlined } from "@ant-design/icons";
 
 const GroupLocks = () => {
   const { groupId } = useParams();
-  console.log("groupId ----", groupId);
   const [current, setCurrentPage] = useState(DEFAULT_PAGE_NUMBER);
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const dispatch = useDispatch();
-  // const groupLocks = useSelector((state) => state.groupLocks);
-  // const { isLoading = false, total, data: groupLocksData = [] } = groupLocks;
-  const groupLocksData = useSelector((state) => state.groupLocks?.data);
+  const groupLocksData = useSelector((state) => state.groupLocks?.data) || [];
   const isLoading = useSelector((state) => state.groupLocks?.isLoading);
   const total = useSelector((state) => state.groupLocks?.total);
+  const modalVisible = useSelector((state) => state.modal.isVisible);
   const handlePageChange = (page, pageSize) => {
     setCurrentPage(page);
     setPageSize(pageSize);
@@ -33,9 +31,11 @@ const GroupLocks = () => {
     dispatch(fetchGroupLocks(groupId, limit, offset));
   };
   useEffect(() => {
-    fetchGroupLocksByPagination(current, pageSize);
+    if (!modalVisible) {
+      fetchGroupLocksByPagination(current, pageSize);
+    }
     //eslint-disable-next-line
-  }, [current, pageSize]);
+  }, [current, pageSize, modalVisible]);
 
   const openAdd = () => {
     dispatch(open(MODALS.ASSIGN_LOCKS, { groupId }));

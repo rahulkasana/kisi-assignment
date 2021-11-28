@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Modal, Form } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { MODALS } from "../../../constants";
@@ -12,6 +12,12 @@ const AssignLocks = () => {
   const [form] = Form.useForm();
   const { isVisible, modalType, data } = modal;
   const visible = isVisible && modalType === MODALS.ASSIGN_LOCKS;
+  const groupLocksData = useSelector((state) => state.groupLocks?.data) || [];
+  useEffect(() => {
+    groupLocksData.forEach((groupLock) => {
+      console.log("groupLock ----", groupLock);
+    });
+  }, [visible]);
 
   const onFinish = (values) => {
     const { locks } = values;

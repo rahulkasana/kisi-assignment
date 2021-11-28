@@ -17,7 +17,7 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
       fetchOptions(value).then((newOptions) => {
         console.log("options ----", options);
         console.log("newOptions ----", newOptions);
-        const updatedOptions = [...options, ...newOptions];
+        const updatedOptions = [...new Set([...options, ...newOptions])];
         console.log("updatedOptions ----", updatedOptions);
         setOptions(updatedOptions);
         setFetching(false);
@@ -31,10 +31,11 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
     <Select
       labelInValue
       filterOption={false}
+      loading={fetching}
       onSearch={debounceFetcher}
       onSelect={() => debounceFetcher("")}
-      suffixIcon={fetching ? <Spin size="small" /> : null}
-      notFoundContent={<Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+      suffixIcon={<Spin size="small" />}
+      // notFoundContent={fetching ? <Spin size="small" /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
       {...props}
       options={options}
     />
@@ -42,24 +43,19 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
 } // Usage of DebounceSelect
 
 async function fetchLockList(q) {
-  console.log("fetching user", q);
   return doRequest({
     method: REQUEST_TYPE.GET,
     url: fetchLocksURL(10, q),
   }).then((response) => {
     console.log("response ----", response);
-    return response.map((lock) => {
-      const { id, name } = lock;
-      return {
-        label: `${name}`,
-        value: id,
-      };
+    return response?.map((lock) => {
+      const { id = "", name = "" } = lock || {};
+      return { label: `${name}`, value: id, key: id };
     });
   });
 }
 
 const Demo = (props) => {
-  console.log("props ----", props);
   return (
     <DebounceSelect
       {...props}

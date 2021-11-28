@@ -38,8 +38,8 @@ const Groups = () => {
         itemLayout="vertical"
         size="large"
         pagination={{
-          current: current,
-          pageSize: pageSize,
+          current: Number(current),
+          pageSize: Number(pageSize),
           total,
           showSizeChanger: true,
           onChange: handlePageChange,
