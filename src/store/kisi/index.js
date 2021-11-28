@@ -11,24 +11,24 @@ export const initialize = () => {
     try {
       dispatch({ type: INITIALIZE_KISI });
       //TODO: Remove this comment and revert payload
-      // const kisiClient = new Kisi();
-      // response = await kisiClient.signIn(
-      //   "rkasana00@gmail.com",
-      //   "Mf@NLdt$.R6E7@T"
-      // );
+      const kisiClient = new Kisi();
+      response = await kisiClient.signIn(
+        "rkasana00@gmail.com",
+        "Mf@NLdt$.R6E7@T"
+      );
       console.log("response --INITIALIZE_KISI_COMPLETED--", response);
       dispatch({
         type: INITIALIZE_KISI_COMPLETED,
-        // payload: { ...response },
-        payload: {
-          secret: "8c262d328e0774f1143f02df03198462",
-          authenticationToken: "8c262d328e0774f1143f02df03198462",
-          user: {
-            email: "rkasana00@gmail.com",
-            id: 67757669,
-            name: "Rahul Kasana",
-          },
-        },
+        payload: { ...response },
+        // payload: {
+        //   secret: "8c262d328e0774f1143f02df03198462",
+        //   authenticationToken: "8c262d328e0774f1143f02df03198462",
+        //   user: {
+        //     email: "rkasana00@gmail.com",
+        //     id: 67757669,
+        //     name: "Rahul Kasana",
+        //   },
+        // },
       });
       // throw new Error('error');
     } catch (err) {
