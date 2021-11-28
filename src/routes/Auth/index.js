@@ -11,6 +11,7 @@ import AssignLocks from "../../components/modals/assignLocks";
 import { PATHS } from "../../constants";
 import { useDispatch } from "react-redux";
 import { initialize } from "../../store/kisi";
+import ConfirmModal from "../../components/modals/confirmDeAssignLock";
 const { Footer, Content } = Layout;
 
 const AuthRoutes = () => {
@@ -35,6 +36,7 @@ const AuthRoutes = () => {
           </Content>
           <Footer>footer</Footer>
           <AssignLocks />
+          <ConfirmModal />
         </Layout>
       </Layout>
     </>
