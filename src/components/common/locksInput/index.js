@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Select, Spin, Empty } from "antd";
+import { Select, Spin } from "antd";
 import debounce from "lodash/debounce";
 import { doRequest } from "../../../helpers/doRequest";
 import { REQUEST_TYPE } from "../../../constants";
@@ -10,6 +10,7 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
   const [options, setOptions] = useState([]);
   useEffect(() => {
     debounceFetcher("");
+    // eslint-disable-next-line
   }, []);
   const debounceFetcher = useMemo(() => {
     const loadOptions = (value) => {
@@ -25,6 +26,7 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
     };
 
     return debounce(loadOptions, debounceTimeout);
+    // eslint-disable-next-line
   }, [fetchOptions, debounceTimeout]);
 
   return (

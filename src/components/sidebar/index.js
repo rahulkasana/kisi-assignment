@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
-import {
-  LockOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import "./styles.less";
 import KisiLogo from "../../assets/icons/kisi.svg";
 import { Link, useMatch } from "react-router-dom";
