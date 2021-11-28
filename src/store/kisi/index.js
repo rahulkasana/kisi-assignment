@@ -1,43 +1,37 @@
 import Kisi from "kisi-client";
 const INITIAL_STATE = {};
 
-const INITIALIZE_KISI = "INITIALIZE_KISI";
-const INITIALIZE_KISI_COMPLETED = "INITIALIZE_KISI_COMPLETED";
-const INITIALIZE_KISI_FAILED = "INITIALIZE_KISI_FAILED";
+const LOGIN = "LOGIN";
+const LOGIN_COMPLETED = "LOGIN_COMPLETED";
+const LOGIN_FAILED = "LOGIN_FAILED";
 
-export const initialize = () => {
+const LOGOUT = "LOGOUT";
+
+export const login = (email, password) => {
   return async (dispatch) => {
     let response = {};
     try {
-      dispatch({ type: INITIALIZE_KISI });
-      //TODO: Remove this comment and revert payload
+      dispatch({ type: LOGIN });
       const kisiClient = new Kisi();
-      response = await kisiClient.signIn(
-        "rkasana00@gmail.com",
-        "Mf@NLdt$.R6E7@T"
-      );
-      console.log("response --INITIALIZE_KISI_COMPLETED--", response);
+      response = await kisiClient.signIn(email, password);
+      console.log("response --LOGIN_COMPLETED--", response);
       dispatch({
-        type: INITIALIZE_KISI_COMPLETED,
+        type: LOGIN_COMPLETED,
         payload: { ...response },
-        // payload: {
-        //   secret: "8c262d328e0774f1143f02df03198462",
-        //   authenticationToken: "8c262d328e0774f1143f02df03198462",
-        //   user: {
-        //     email: "rkasana00@gmail.com",
-        //     id: 67757669,
-        //     name: "Rahul Kasana",
-        //   },
-        // },
       });
-      // throw new Error('error');
     } catch (err) {
       dispatch({
-        type: INITIALIZE_KISI_FAILED,
+        type: LOGIN_FAILED,
         payload: { error: err.message },
       });
     }
     return response;
+  };
+};
+
+export const logout = () => {
+  return async (dispatch) => {
+    dispatch({ type: LOGOUT });
   };
 };
 
@@ -55,9 +49,11 @@ const clearUserInfo = () => {
 const KisiReducer = (state = INITIAL_STATE, action = {}) => {
   const { type, payload = {} } = action;
   switch (type) {
-    case INITIALIZE_KISI_COMPLETED:
+    case LOGIN_COMPLETED:
       return setUserInfo(payload);
-    case INITIALIZE_KISI_FAILED:
+    case LOGIN_FAILED:
+      return clearUserInfo();
+    case LOGOUT:
       return clearUserInfo();
     default: {
       return state;
