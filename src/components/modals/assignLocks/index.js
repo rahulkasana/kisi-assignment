@@ -1,17 +1,31 @@
-import React, {useEffect} from "react";
-import { Modal } from "antd";
+import React from "react";
+import { Modal, Form } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { MODALS } from "../../../constants";
 import { close } from "../../../store/modal";
+import LocksInput from "../../common/locksInput";
+import { createGroupLock } from "../../../store/groupLocks";
 
 const AssignLocks = () => {
   const modal = useSelector((state) => state.modal);
   const dispatch = useDispatch();
-  const { isVisible, modalType } = modal;
+  const [form] = Form.useForm();
+  const { isVisible, modalType, data } = modal;
   const visible = isVisible && modalType === MODALS.ASSIGN_LOCKS;
-  useEffect(()=>{
 
-  },[visible])
+  const onFinish = (values) => {
+    const { locks } = values;
+    const lockId = locks[0].value;
+    dispatch(
+      createGroupLock({
+        group_lock: {
+          group_id: data.groupId,
+          lock_id: lockId,
+        },
+      })
+    );
+    dispatch(close());
+  };
 
   return (
     <>
@@ -19,13 +33,24 @@ const AssignLocks = () => {
         title="Assign Lock"
         centered
         visible={visible}
-        onOk={() => dispatch(close())}
+        onOk={() => form.submit()}
         onCancel={() => dispatch(close())}
         width={"50%"}
       >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
+        <Form form={form} name="assign-lock" onFinish={onFinish}>
+          <Form.Item
+            name="locks"
+            label="Locks"
+            rules={[
+              {
+                required: true,
+                message: "Atleast one lock is required to add",
+              },
+            ]}
+          >
+            <LocksInput />
+          </Form.Item>
+        </Form>
       </Modal>
     </>
   );

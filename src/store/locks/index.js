@@ -6,7 +6,7 @@ const FETCH_LOCKS = "FETCH_LOCKS";
 const FETCH_LOCKS_COMPLETED = "FETCH_LOCKS_COMPLETED";
 const FETCH_LOCKS_FAILED = "FETCH_LOCKS_FAILED";
 
-export const fetchGroups = (limit, q) => {
+export const fetchLocks = (limit, q) => {
   return async (dispatch) => {
     let response = {};
     try {
@@ -25,7 +25,7 @@ export const fetchGroups = (limit, q) => {
       } else {
         dispatch({
           type: FETCH_LOCKS_COMPLETED,
-          payload: { groups: response },
+          payload: { locks: response },
         });
       }
     } catch (err) {

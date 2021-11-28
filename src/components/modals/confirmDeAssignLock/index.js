@@ -3,25 +3,35 @@ import { Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { MODALS } from "../../../constants";
 import { close } from "../../../store/modal";
+import { deleteGroupLock } from "../../../store/groupLocks";
 
 const ConfirmModal = () => {
   const modal = useSelector((state) => state.modal);
   const dispatch = useDispatch();
-  const { isVisible, modalType } = modal;
+  const { isVisible, modalType, data: { groupLockId } = {} } = modal;
+
+  const deAssignLock = () => {
+    if (groupLockId) {
+      dispatch(deleteGroupLock(groupLockId));
+      closeModal();
+    }
+  };
+
+  const closeModal = () => {
+    dispatch(close());
+  };
 
   return (
     <>
       <Modal
         title="Are you sure?"
         centered
-        visible={isVisible && modalType === MODALS.ASSIGN_LOCKS}
-        onOk={() => dispatch(close())}
-        onCancel={() => dispatch(close())}
+        visible={isVisible && modalType === MODALS.DE_ASSIGN_LOCKS}
+        onOk={deAssignLock}
+        onCancel={closeModal}
         width={"50%"}
       >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
+        Confirm you want to deassign this lock.
       </Modal>
     </>
   );

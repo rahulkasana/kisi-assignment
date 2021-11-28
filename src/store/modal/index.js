@@ -1,3 +1,12 @@
+import {
+  CREATE_GROUP_LOCKS,
+  CREATE_GROUP_LOCKS_COMPLETED,
+  CREATE_GROUP_LOCKS_FAILED,
+  DELETE_GROUP_LOCK,
+  DELETE_GROUP_LOCK_COMPLETED,
+  DELETE_GROUP_LOCK_FAILED,
+} from "../groupLocks";
+
 export const OPEN_MODAL = "OPEN_MODAL";
 export const CLOSE_MODAL = "CLOSE_MODAL";
 
@@ -5,8 +14,9 @@ const INITIAL_STATE = {
   isVisible: false,
   modalType: null,
   data: {},
+  isRequesting: false,
   isError: false,
-  requesting: false,
+  error: "",
 };
 
 export const open = (modalType, data) => {
@@ -29,33 +39,35 @@ const ModalReducer = (state = INITIAL_STATE, action) => {
         isVisible: true,
         modalType: payload.modalType,
         data: payload.data,
-        active_tab: payload.active_tab,
       };
     case CLOSE_MODAL:
       return {
         isVisible: false,
       };
-    // case FETCH_DRIVER_CONSENT:
-    //   return {
-    //     ...state,
-    //     loading: true,
-    //     error: "",
-    //     isError: false,
-    //   };
-    // case FETCH_DRIVER_CONSENT_COMPLETED:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     error: "",
-    //     isError: false,
-    //   };
-    // case FETCH_DRIVER_CONSENT_FAILED:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     isError: true,
-    //     error: payload.error,
-    //   };
+    case CREATE_GROUP_LOCKS:
+    case DELETE_GROUP_LOCK:
+      return {
+        ...state,
+        isRequesting: true,
+        error: "",
+        isError: false,
+      };
+    case CREATE_GROUP_LOCKS_COMPLETED:
+    case DELETE_GROUP_LOCK_COMPLETED:
+      return {
+        ...state,
+        isRequesting: false,
+        error: "",
+        isError: false,
+      };
+    case CREATE_GROUP_LOCKS_FAILED:
+    case DELETE_GROUP_LOCK_FAILED:
+      return {
+        ...state,
+        isRequesting: false,
+        isError: true,
+        error: payload.error,
+      };
     default:
       return state;
   }

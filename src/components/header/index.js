@@ -5,8 +5,8 @@ const { Header } = Layout;
 
 const AppHeader = (props) => {
   return (
-    <Header className="site-layout-background" style={{ padding: 0 }}>
-      <div>Kisi Assignment</div>
+    <Header className="site-layout-background">
+      <div className="heading">Kisi Assignment</div>
     </Header>
   );
 };

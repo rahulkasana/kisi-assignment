@@ -9,3 +9,11 @@ export const fetchGroupLocksURL = (groupId, limit, offset) => {
 export const fetchLocksURL = (limit, q) => {
   return `/locks/?limit=${limit}&query=${q}`;
 };
+
+export const createGroupLockURL = () => {
+  return `/group_locks`;
+};
+
+export const deleteGroupLockURL = (groupLockId) => {
+  return `/group_locks/${groupLockId}`;
+};
