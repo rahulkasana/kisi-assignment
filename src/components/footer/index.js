@@ -9,7 +9,7 @@ const AppFooter = () => {
     <>
       <Footer>
         <div className="footer-container">
-          <div>Hi, 👋</div>
+          <div>Hi, there 👋</div>
           <a
             rel="noopener noreferrer"
             href="https://github.com/rahulkasana/kisi-assignment"

@@ -29,9 +29,9 @@ const Sidebar = (props) => {
         <Menu.Item key="1" icon={<UserOutlined />}>
           <Link to={PATHS.GROUPS}>Groups</Link>
         </Menu.Item>
-        <Menu.Item key="2" icon={<LockOutlined />}>
-          <Link to={PATHS.LOCKS}>Locks</Link>
-        </Menu.Item>
+        {/*<Menu.Item key="2" icon={<LockOutlined />}>*/}
+        {/*  <Link to={PATHS.LOCKS}>Locks</Link>*/}
+        {/*</Menu.Item>*/}
       </Menu>
     </Sider>
   );
