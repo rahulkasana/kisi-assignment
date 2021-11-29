@@ -5,6 +5,7 @@ const LOGIN = "LOGIN";
 const LOGIN_COMPLETED = "LOGIN_COMPLETED";
 const LOGIN_FAILED = "LOGIN_FAILED";
 
+const RE_INITIALIZE = "RE_INITIALIZE";
 const LOGOUT = "LOGOUT";
 
 export const login = (email, password) => {
@@ -29,6 +30,18 @@ export const login = (email, password) => {
   };
 };
 
+export const initialize = () => {
+  const secret = localStorage.getItem("secret");
+  return async (dispatch) => {
+    if (secret) {
+      dispatch({
+        type: RE_INITIALIZE,
+        payload: { secret, authenticationToken: secret },
+      });
+    }
+  };
+};
+
 export const logout = () => {
   return async (dispatch) => {
     dispatch({ type: LOGOUT });
@@ -36,9 +49,9 @@ export const logout = () => {
 };
 
 const setUserInfo = (payload) => {
-  const { secret, authenticationToken, user } = payload;
+  const { secret, authenticationToken } = payload;
   localStorage.setItem("secret", secret);
-  return { secret, authenticationToken, user };
+  return { secret, authenticationToken };
 };
 
 const clearUserInfo = () => {
@@ -55,6 +68,8 @@ const KisiReducer = (state = INITIAL_STATE, action = {}) => {
       return clearUserInfo();
     case LOGOUT:
       return clearUserInfo();
+    case RE_INITIALIZE:
+      return setUserInfo(payload);
     default: {
       return state;
     }

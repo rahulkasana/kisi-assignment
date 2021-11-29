@@ -1,7 +1,8 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Spin } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { initialize } from "../store/kisi";
 
 const Auth = lazy(() => import("./Auth"));
 const Global = lazy(() => import("./Global"));
@@ -10,12 +11,16 @@ function AppRoutes() {
   const loadingState = () => {
     return <Spin size="large" />;
   };
-  const secret = localStorage.getItem("secret");
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(initialize());
+    //eslint-disable-next-line
+  }, []);
   const loggedIn = useSelector((state) => state.kisi?.secret);
   return (
     <>
       <Suspense fallback={loadingState()}>
-        <BrowserRouter>{secret ? <Auth /> : <Global />}</BrowserRouter>
+        <BrowserRouter>{!!loggedIn ? <Auth /> : <Global />}</BrowserRouter>
       </Suspense>
     </>
   );
