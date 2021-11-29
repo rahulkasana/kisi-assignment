@@ -3,9 +3,9 @@ import "./styles.less";
 import { Layout } from "antd";
 const { Header } = Layout;
 
-const AppHeader = (props) => {
+const AppHeader = () => {
   return (
-    <Header className="site-layout-background">
+    <Header>
       <div className="heading">Kisi Assignment</div>
     </Header>
   );

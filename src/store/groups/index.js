@@ -8,56 +8,32 @@ const FETCH_GROUPS = "FETCH_GROUPS";
 const FETCH_GROUPS_COMPLETED = "FETCH_GROUPS_COMPLETED";
 const FETCH_GROUPS_FAILED = "FETCH_GROUPS_FAILED";
 
-// export const fetchGroups = (limit, offset) => {
-//   return async (dispatch) => {
-//     let response = {};
-//     try {
-//       dispatch({ type: FETCH_GROUPS });
-//       response = await doRequest({
-//         method: REQUEST_TYPE.GET,
-//         url: fetchGroupsURL(limit, offset),
-//       });
-//       console.log("response --FETCH_GROUPS_COMPLETED--", response);
-//       const { error } = response;
-//       if (error) {
-//         dispatch({
-//           type: FETCH_GROUPS_FAILED,
-//           payload: { error },
-//         });
-//       } else {
-//         dispatch({
-//           type: FETCH_GROUPS_COMPLETED,
-//           payload: { groups: response },
-//         });
-//       }
-//     } catch (err) {
-//       dispatch({
-//         type: FETCH_GROUPS_FAILED,
-//         payload: { error: err.message },
-//       });
-//     }
-//     return response;
-//   };
-// };
-
 export const fetchGroups = (limit, offset) => {
   return async (dispatch) => {
-    dispatch({ type: FETCH_GROUPS });
-    let response = await doRequest({
-      method: REQUEST_TYPE.GET,
-      url: fetchGroupsURL(limit, offset),
-    });
-    console.log("response --FETCH_GROUPS_COMPLETED--", response);
-    const { error } = response;
-    if (!!error) {
+    let response = {};
+    try {
+      dispatch({ type: FETCH_GROUPS });
+      response = await doRequest({
+        method: REQUEST_TYPE.GET,
+        url: fetchGroupsURL(limit, offset),
+      });
+      console.log("response --FETCH_GROUPS_COMPLETED--", response);
+      const { error } = response;
+      if (error) {
+        dispatch({
+          type: FETCH_GROUPS_FAILED,
+          payload: { error },
+        });
+      } else {
+        dispatch({
+          type: FETCH_GROUPS_COMPLETED,
+          payload: { groups: response },
+        });
+      }
+    } catch (err) {
       dispatch({
         type: FETCH_GROUPS_FAILED,
-        payload: { error },
-      });
-    } else {
-      dispatch({
-        type: FETCH_GROUPS_COMPLETED,
-        payload: { groups: response },
+        payload: { error: err.message },
       });
     }
     return response;

@@ -42,7 +42,11 @@ const Sidebar = (props) => {
           <Link to={PATHS.LOCKS}>Locks</Link>
         </Menu.Item>
       </Menu>
-      <LogoutOutlined onClick={handleLogout} />
+
+      <LogoutOutlined
+        style={{ fontSize: "20px", color: "white" }}
+        onClick={handleLogout}
+      />
     </Sider>
   );
 };
