@@ -1,2 +1,10 @@
 @import './colors/index.less';
-//FOR MORE VARIABLES LIKE FONTS ETC
+// EXAMPLES - FOR MORE VARIABLES LIKE FONTS & MEDIA QUERIES ETC
+.max(@max; @rules){@media only screen and (max-width: (@max - 1)){@rules();}}
+.min(@min; @rules){@media only screen and (min-width: @min){@rules();}}
+.bw(@min; @max; @rules){@media only screen and (min-width: @min) and (max-width: (@max - 1)){@rules();}}
+
+@pad: 480px;
+@tab: 800px;
+@desktop: 992px;
+@hd: 1200px;

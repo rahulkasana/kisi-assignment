@@ -5,7 +5,7 @@ import { doRequest } from "../../../helpers/doRequest";
 import { REQUEST_TYPE } from "../../../constants";
 import { fetchLocksURL } from "../../../helpers/urls";
 
-function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
+function DebounceSelect({ fetchOptions, debounceTimeout = 350, ...props }) {
   const [fetching, setFetching] = useState(false);
   const [options, setOptions] = useState([]);
   useEffect(() => {
@@ -16,10 +16,7 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
     const loadOptions = (value) => {
       setFetching(true);
       fetchOptions(value).then((newOptions) => {
-        console.log("options ----", options);
-        console.log("newOptions ----", newOptions);
         const updatedOptions = [...new Set([...options, ...newOptions])];
-        console.log("updatedOptions ----", updatedOptions);
         setOptions(updatedOptions);
         setFetching(false);
       });
@@ -36,6 +33,7 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 800, ...props }) {
       loading={fetching}
       onSearch={debounceFetcher}
       onSelect={() => debounceFetcher("")}
+      onDeselect={() => debounceFetcher("")}
       suffixIcon={<Spin size="small" />}
       // notFoundContent={fetching ? <Spin size="small" /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
       {...props}
@@ -49,15 +47,15 @@ async function fetchLockList(q) {
     method: REQUEST_TYPE.GET,
     url: fetchLocksURL(10, q),
   }).then((response) => {
-    console.log("response ----", response);
-    return response?.map((lock) => {
+    const { data = [] } = response;
+    return data?.map((lock) => {
       const { id = "", name = "" } = lock || {};
       return { label: `${name}`, value: id, key: id };
     });
   });
 }
 
-const Demo = (props) => {
+const DebouncedLockInput = (props) => {
   return (
     <DebounceSelect
       {...props}
@@ -66,11 +64,9 @@ const Demo = (props) => {
       fetchOptions={fetchLockList}
       // value={value}
       // onChange={(newValue) => setValue(newValue)}
-      style={{
-        width: "100%",
-      }}
+      style={{ width: "100%" }}
     />
   );
 };
 
-export default Demo;
+export default DebouncedLockInput;

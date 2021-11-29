@@ -7,7 +7,7 @@ import {
 } from "../../helpers/urls";
 
 //TODO: TOTAL IN GROUP LOCKS IS FIXED, COZ I CANT FIND, HOW TO GET TOTAL FROM API's
-const INITIAL_STATE = { isLoading: false, error: false, total: 2 };
+const INITIAL_STATE = { isLoading: false, error: false, total: null };
 
 const FETCH_GROUP_LOCKS = "FETCH_GROUP_LOCKS";
 const FETCH_GROUP_LOCKS_COMPLETED = "FETCH_GROUP_LOCKS_COMPLETED";
@@ -31,7 +31,7 @@ export const fetchGroupLocks = (groupId, limit, offset) => {
         url: fetchGroupLocksURL(groupId, limit, offset),
       });
       console.log("response --FETCH_GROUPS_COMPLETED--", response);
-      const { error } = response;
+      const { error, data, total } = response;
       if (!!error) {
         dispatch({
           type: FETCH_GROUP_LOCKS_FAILED,
@@ -40,7 +40,7 @@ export const fetchGroupLocks = (groupId, limit, offset) => {
       } else {
         dispatch({
           type: FETCH_GROUP_LOCKS_COMPLETED,
-          payload: { groups: response },
+          payload: { groupLocks: data, total: total },
         });
       }
     } catch (err) {
@@ -64,7 +64,7 @@ export const createGroupLock = (requestData) => {
         data: requestData,
       });
       console.log("response --CREATE_GROUP_LOCKS_COMPLETED--", response);
-      const { error } = response;
+      const { error, data } = response;
       if (error) {
         dispatch({
           type: CREATE_GROUP_LOCKS_FAILED,
@@ -73,7 +73,7 @@ export const createGroupLock = (requestData) => {
       } else {
         dispatch({
           type: CREATE_GROUP_LOCKS_COMPLETED,
-          payload: { locks: response },
+          payload: { locks: data },
         });
       }
     } catch (err) {
@@ -96,7 +96,7 @@ export const deleteGroupLock = (groupLockId) => {
         url: deleteGroupLockURL(groupLockId),
       });
       console.log("response --DELETE_GROUP_LOCK--", response);
-      const { error } = response;
+      const { error, data } = response;
       if (error) {
         dispatch({
           type: DELETE_GROUP_LOCK_FAILED,
@@ -105,7 +105,7 @@ export const deleteGroupLock = (groupLockId) => {
       } else {
         dispatch({
           type: DELETE_GROUP_LOCK_COMPLETED,
-          payload: { locks: response },
+          payload: { locks: data },
         });
       }
     } catch (err) {
@@ -122,13 +122,14 @@ const GroupLocksReducer = (state = INITIAL_STATE, action = {}) => {
   const { type, payload = {} } = action;
   switch (type) {
     case FETCH_GROUP_LOCKS:
-      return { ...INITIAL_STATE, isLoading: true };
+      return { ...state, isLoading: true };
     case FETCH_GROUP_LOCKS_COMPLETED:
       return {
         ...state,
-        data: payload.groups,
+        data: payload.groupLocks,
         isLoading: false,
         error: false,
+        total: payload.total,
       };
     case FETCH_GROUP_LOCKS_FAILED:
       return {

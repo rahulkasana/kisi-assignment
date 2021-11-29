@@ -8,12 +8,16 @@ import { deleteGroupLock } from "../../../store/groupLocks";
 const ConfirmModal = () => {
   const modal = useSelector((state) => state.modal);
   const dispatch = useDispatch();
-  const { isVisible, modalType, data: { groupLockId } = {} } = modal;
+  const {
+    isVisible,
+    isRequesting,
+    modalType,
+    data: { groupLockId } = {},
+  } = modal;
 
   const deAssignLock = () => {
     if (groupLockId) {
-      dispatch(deleteGroupLock(groupLockId));
-      closeModal();
+      dispatch(deleteGroupLock(groupLockId)).then(() => closeModal());
     }
   };
 
@@ -28,6 +32,7 @@ const ConfirmModal = () => {
         centered
         visible={isVisible && modalType === MODALS.DE_ASSIGN_LOCKS}
         onOk={deAssignLock}
+        okButtonProps={{ loading: isRequesting }}
         onCancel={closeModal}
         width={"50%"}
       >

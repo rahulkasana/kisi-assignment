@@ -33,8 +33,14 @@ export const doRequest = async (requestData) => {
   try {
     console.log("requestConfig ----", requestConfig);
     const response = await axios(requestConfig);
-    return response.data;
+    const limit = response.headers["x-collection-range"];
+    if (limit) {
+      const total = limit?.split("/")[1];
+      return { data: response.data, total };
+    }
+    return { data: response.data };
   } catch (error) {
+    console.log("error ----", error);
     if (error?.response?.status === 401) {
       message.error(`Token expired login again`, 8);
     }

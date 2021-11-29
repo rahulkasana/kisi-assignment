@@ -1,30 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Col, List, Row, Tooltip } from "antd";
-import { LockOutlined, MessageOutlined } from "@ant-design/icons";
+import { LockOutlined, InfoCircleOutlined } from "@ant-design/icons";
 
 const RenderGroup = (group) => {
-  const { name = "", description = "No Description", id, locks_count } = group;
+  const { name = "", description = "", id, locks_count } = group;
   return (
-    <List.Item
-      key={id}
-      extra={
-        <Row gutter={[16, 16]}>
-          <Col span={12}>
-            <Link to={`/groups/${id}/locks`}>
-              <Tooltip title={locks_count} placement="left">
-                <LockOutlined />
-              </Tooltip>
-            </Link>
+    <List.Item key={id}>
+      <Link
+        to={`/groups/${id}/locks`}
+        style={{ color: "inherit", textDecoration: "inherit" }}
+      >
+        <Row>
+          <Col span={20}>
+            <Row style={{ fontWeight: "bold" }}>{name}</Row>
+            <Row>{description ? description : "No Description"}</Row>
           </Col>
-          <Col span={12}>
-            <MessageOutlined />
+          <Col span={4}>
+            <Row gutter={[16]}>
+              <Tooltip title="Locks Currently Active" color="#6787f0" key={id}>
+                <Col>
+                  {locks_count} <LockOutlined style={{ fontSize: 16 }} />
+                </Col>
+              </Tooltip>
+              <Col>
+                <Tooltip title={JSON.stringify(group)} color="#6787f0" key={id}>
+                  <InfoCircleOutlined />
+                </Tooltip>
+              </Col>
+            </Row>
           </Col>
         </Row>
-      }
-    >
-      {name}
-      {description}
+      </Link>
     </List.Item>
   );
 };

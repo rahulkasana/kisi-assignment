@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,15 +12,26 @@ function AppRoutes() {
     return <Spin size="large" />;
   };
   const dispatch = useDispatch();
+  const [isLoggedIn, setLoggedIn] = useState(localStorage.getItem("secret"));
   useEffect(() => {
     dispatch(initialize());
+    //This solution is no longer needed on es-lint-plugin-react-hooks@4.1.0 and above.
     //eslint-disable-next-line
   }, []);
-  const loggedIn = useSelector((state) => state.kisi?.secret);
+
+  const secret = useSelector((state) => state.kisi?.secret);
+  useEffect(() => {
+    if (secret) {
+      setLoggedIn(secret);
+    } else {
+      setLoggedIn(null);
+    }
+  }, [secret]);
+
   return (
     <>
       <Suspense fallback={loadingState()}>
-        <BrowserRouter>{!!loggedIn ? <Auth /> : <Global />}</BrowserRouter>
+        <BrowserRouter>{!!isLoggedIn ? <Auth /> : <Global />}</BrowserRouter>
       </Suspense>
     </>
   );

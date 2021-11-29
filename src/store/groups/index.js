@@ -2,7 +2,7 @@ import { doRequest } from "../../helpers/doRequest";
 import { REQUEST_TYPE } from "../../constants";
 import { fetchGroupsURL } from "../../helpers/urls";
 
-const INITIAL_STATE = { isLoading: false, error: false, total: 11 };
+const INITIAL_STATE = { isLoading: false, error: false, total: null };
 
 const FETCH_GROUPS = "FETCH_GROUPS";
 const FETCH_GROUPS_COMPLETED = "FETCH_GROUPS_COMPLETED";
@@ -18,7 +18,7 @@ export const fetchGroups = (limit, offset) => {
         url: fetchGroupsURL(limit, offset),
       });
       console.log("response --FETCH_GROUPS_COMPLETED--", response);
-      const { error } = response;
+      const { error, data, total } = response;
       if (error) {
         dispatch({
           type: FETCH_GROUPS_FAILED,
@@ -27,7 +27,7 @@ export const fetchGroups = (limit, offset) => {
       } else {
         dispatch({
           type: FETCH_GROUPS_COMPLETED,
-          payload: { groups: response },
+          payload: { groups: data, total: total },
         });
       }
     } catch (err) {
@@ -44,6 +44,7 @@ const setGroupsSuccess = (state, payload) => {
   return {
     ...state,
     data: payload.groups,
+    total: payload.total,
     isLoading: false,
     error: false,
   };
@@ -53,6 +54,7 @@ const setGroupsFailure = (state, payload) => {
   return {
     ...state,
     data: [],
+    total: 0,
     isLoading: false,
     error: payload.error,
   };
@@ -62,7 +64,7 @@ const GroupsReducer = (state = INITIAL_STATE, action = {}) => {
   const { type, payload = {} } = action;
   switch (type) {
     case FETCH_GROUPS:
-      return { ...INITIAL_STATE, isLoading: true };
+      return { ...state, isLoading: true };
     case FETCH_GROUPS_COMPLETED:
       return setGroupsSuccess(state, payload);
     case FETCH_GROUPS_FAILED:

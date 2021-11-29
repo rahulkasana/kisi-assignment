@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, List } from "antd";
+import { Button, Col, List, Row, Tooltip } from "antd";
 import {
   DEFAULT_PAGE_NUMBER,
   DEFAULT_PAGE_SIZE,
@@ -10,7 +10,7 @@ import { fetchGroupLocks } from "../../store/groupLocks";
 import { useParams } from "react-router-dom";
 import "./styles.less";
 import { open } from "../../store/modal";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, InfoCircleOutlined } from "@ant-design/icons";
 
 const GroupLocks = () => {
   const { groupId } = useParams();
@@ -62,15 +62,36 @@ const GroupLocks = () => {
           onChange: handlePageChange,
         }}
         dataSource={groupLocksData}
-        renderItem={(item) => {
+        renderItem={(groupLock) => {
           const { lock: { description = "No Description", name } = {}, id } =
-            item;
+            groupLock;
           return (
-            <div key={id}>
-              <div>{name}</div>
-              <div>{description}</div>
-              <DeleteOutlined onClick={openConfirmModal(id)} />
-            </div>
+            <List.Item key={id}>
+              <Row>
+                <Col span={20}>
+                  <Row style={{ fontWeight: "bold" }}>{name}</Row>
+                  <Row>{description ? description : "No Description"}</Row>
+                </Col>
+                <Col span={4}>
+                  <Row gutter={[16]}>
+                    <Tooltip title="Delete Lock" color="#6787f0" key={id}>
+                      <Col>
+                        <DeleteOutlined onClick={openConfirmModal(id)} />
+                      </Col>
+                    </Tooltip>
+                    <Col>
+                      <Tooltip
+                        title={JSON.stringify(groupLock)}
+                        color="#6787f0"
+                        key={id}
+                      >
+                        <InfoCircleOutlined />
+                      </Tooltip>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </List.Item>
           );
         }}
       />

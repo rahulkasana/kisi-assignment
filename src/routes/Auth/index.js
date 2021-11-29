@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Layout } from "antd";
 import { Routes, Route } from "react-router-dom";
-import "./styles.less";
 import Sidebar from "../../components/sidebar";
 import Header from "../../components/header";
 import Groups from "../../components/groups";
@@ -10,8 +9,9 @@ import Locks from "../../components/locks";
 import NotFound from "../../components/common/notFound";
 import AssignLocks from "../../components/modals/assignLocks";
 import ConfirmModal from "../../components/modals/confirmDeAssignLock";
+import Footer from "../../components/footer";
 import { PATHS } from "../../constants";
-const { Footer, Content } = Layout;
+const { Content } = Layout;
 
 const AuthRoutes = () => {
   return (
@@ -29,7 +29,7 @@ const AuthRoutes = () => {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Content>
-          <Footer>footer</Footer>
+          <Footer />
           <AssignLocks />
           <ConfirmModal />
         </Layout>

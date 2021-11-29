@@ -1,9 +1,12 @@
 .ant-layout-header {
-  //&.site-layout-background {
-  //}
   background: #6787f0d6;
   padding: 12px;
-
+  .ant-row {
+    height: 100%;
+    .ant-col {
+      height: 100%;
+    }
+  }
   .heading {
     display: flex;
     height: 100%;
@@ -11,5 +14,22 @@
     font-size: 16px;
     font-weight: 600;
     color: white;
+  }
+  .logout-container {
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    .logout-box {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: flex-end;
+      cursor: pointer;
+      .logout-icon {
+        font-size: 20px;
+        margin-left: 8px;
+        color: white;
+      }
+    }
   }
 }
