@@ -49,6 +49,11 @@ const AssignLocks = () => {
       });
   };
 
+  const closeModal = () => {
+    form.resetFields();
+    dispatch(close());
+  };
+
   return (
     <>
       <Modal
@@ -57,7 +62,7 @@ const AssignLocks = () => {
         visible={visible}
         okButtonProps={{ loading: loading }}
         onOk={handleSubmit}
-        onCancel={() => dispatch(close())}
+        onCancel={closeModal}
         width={"50%"}
       >
         <Form
