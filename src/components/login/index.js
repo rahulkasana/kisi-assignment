@@ -11,28 +11,24 @@ const Login = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const onFinish = (values) => {
-    console.log("-------- 11111 --------");
     setLoading(true);
     const { username, password } = values;
     dispatch(login(username, password))
       .then((result) => {
+        setLoading(false);
         const { secret } = result;
         if (secret) {
           navigate(PATHS.GROUPS, { replace: true });
         }
       })
-      .finally(() => setLoading(false));
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+      .catch(() => setLoading(false));
   };
 
   return (
     <>
       <div className="login-container">
         <div className="login-box">
-          <div>Sign In to Your Kisi Account</div>
+          <div className="login-heading">Sign In to Your Kisi Account</div>
           <Form
             name="login"
             layout="vertical"
@@ -43,7 +39,6 @@ const Login = () => {
               password: "Mf@NLdt$.R6E7@T",
             }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
             autoComplete="off"
           >
             <Form.Item
@@ -53,7 +48,7 @@ const Login = () => {
                 { required: true, message: "Please input your username!" },
               ]}
             >
-              <Input />
+              <Input className="input-box" />
             </Form.Item>
 
             <Form.Item
@@ -63,13 +58,15 @@ const Login = () => {
                 { required: true, message: "Please input your password!" },
               ]}
             >
-              <Input.Password />
+              <Input.Password className="input-box" />
             </Form.Item>
 
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col span={24}>
                 <Form.Item>
                   <Button
+                    className="kisi-button"
+                    style={{ width: "100%", marginTop: "24px" }}
                     type="primary"
                     htmlType="submit"
                     loading={loading}

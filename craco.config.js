@@ -1,6 +1,11 @@
 const CracoLessPlugin = require("craco-less");
 
 module.exports = {
+  babel: {
+    presets: [],
+    plugins:
+      process.env.NODE_ENV === 'production' ? ['transform-remove-console'] : [],
+  },
   plugins: [
     {
       plugin: CracoLessPlugin,

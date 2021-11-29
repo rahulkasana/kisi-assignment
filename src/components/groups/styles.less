@@ -1,10 +1,18 @@
+@import "../../styles/index.less";
 .groups-container {
   overflow: auto;
   height: 100%;
+  .ant-list {
+    height: 100%;
+  }
   .ant-spin-nested-loading {
-    height: 70vh;
+    height: calc(100% - 58px);
+    overflow: auto;
     .ant-list-item {
-      padding: 8px 24px;
+      padding: 8px;
+      border: 1px solid @lightBlue !important;
+      border-radius: 4px;
+      margin-bottom: 8px;
     }
   }
 }

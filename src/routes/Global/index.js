@@ -1,10 +1,10 @@
 import React from "react";
 import { Layout } from "antd";
 import { Routes, Route } from "react-router-dom";
-import "./styles.less";
 import Header from "../../components/header";
 import Login from "../../components/login";
-const { Footer, Content } = Layout;
+import Footer from "../../components/footer";
+const { Content } = Layout;
 
 const AuthRoutes = () => {
   return (
@@ -16,7 +16,7 @@ const AuthRoutes = () => {
             <Route path="*" element={<Login />} />
           </Routes>
         </Content>
-        <Footer>footer</Footer>
+        <Footer />
       </Layout>
     </>
   );

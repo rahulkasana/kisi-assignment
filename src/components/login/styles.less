@@ -1,3 +1,5 @@
+@import "../../styles/index.less";
+
 .login-container {
   display: flex;
   height: 100%;
@@ -7,6 +9,19 @@
   .login-box {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    .login-heading{
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+    .min(@pad,{
+      width: 80%;
+    });
+    .min(@tab,{
+      width: 60%;
+    });
+    .min(@desktop,{
+      width: 40%;
+    });
+    //width: 40%;
   }
 }

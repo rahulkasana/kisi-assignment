@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Form } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { MODALS } from "../../../constants";
@@ -7,32 +7,50 @@ import LocksInput from "../../common/locksInput";
 import { createGroupLock } from "../../../store/groupLocks";
 
 const AssignLocks = () => {
+  const [loading, setLoading] = useState(false);
   const modal = useSelector((state) => state.modal);
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const { isVisible, modalType, data } = modal;
   const visible = isVisible && modalType === MODALS.ASSIGN_LOCKS;
-  // const groupLocksData = useSelector((state) => state.groupLocks?.data) || [];
-  // useEffect(() => {
-  //   groupLocksData.forEach((groupLock) => {
-  //     console.log("groupLock ----", groupLock);
-  //   });
-  //   // eslint-disable-next-line
-  // }, [visible]);
 
   const onFinish = (values) => {
-    const { locks } = values;
-    locks.forEach((lock) => {
+    const { locks = [] } = values;
+    let p = [];
+    for (const lock of locks) {
       const { value } = lock;
-      dispatch(
-        createGroupLock({
-          group_lock: {
-            group_id: data.groupId,
-            lock_id: value,
-          },
-        })
+      p.push(
+        dispatch(
+          createGroupLock({
+            group_lock: {
+              group_id: data.groupId,
+              lock_id: value,
+            },
+          })
+        )
       );
+    }
+    Promise.all(p).then((values) => {
+      setLoading(false);
+      dispatch(close());
     });
+  };
+
+  const handleSubmit = () => {
+    setLoading(true);
+    form
+      .validateFields()
+      .then((values) => {
+        form.resetFields();
+        onFinish(values);
+      })
+      .catch((info) => {
+        console.log("Validate Failed:", info);
+      });
+  };
+
+  const closeModal = () => {
+    form.resetFields();
     dispatch(close());
   };
 
@@ -42,11 +60,17 @@ const AssignLocks = () => {
         title="Assign Lock"
         centered
         visible={visible}
-        onOk={() => form.submit()}
-        onCancel={() => dispatch(close())}
+        okButtonProps={{ loading: loading }}
+        onOk={handleSubmit}
+        onCancel={closeModal}
         width={"50%"}
       >
-        <Form form={form} name="assign-lock" onFinish={onFinish}>
+        <Form
+          layout="vertical"
+          form={form}
+          name="assign-lock"
+          onFinish={onFinish}
+        >
           <Form.Item
             name="locks"
             label="Locks"

@@ -1,25 +1,16 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
-import { LockOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import "./styles.less";
 import KisiLogo from "../../assets/icons/kisi.svg";
-import { Link, useMatch, useNavigate } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import { PATHS } from "../../constants";
-import { useDispatch } from "react-redux";
-import { logout } from "../../store/kisi";
 const { Sider } = Layout;
 
 const Sidebar = (props) => {
   const [collapsed, toggleCollapsed] = useState(false);
   const isGroups = useMatch(PATHS.GROUPS);
   const isLocks = useMatch(PATHS.LOCKS);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate("/login", { replace: true });
-  };
 
   return (
     <Sider
@@ -38,15 +29,10 @@ const Sidebar = (props) => {
         <Menu.Item key="1" icon={<UserOutlined />}>
           <Link to={PATHS.GROUPS}>Groups</Link>
         </Menu.Item>
-        <Menu.Item key="2" icon={<LockOutlined />}>
-          <Link to={PATHS.LOCKS}>Locks</Link>
-        </Menu.Item>
+        {/*<Menu.Item key="2" icon={<LockOutlined />}>*/}
+        {/*  <Link to={PATHS.LOCKS}>Locks</Link>*/}
+        {/*</Menu.Item>*/}
       </Menu>
-
-      <LogoutOutlined
-        style={{ fontSize: "20px", color: "white" }}
-        onClick={handleLogout}
-      />
     </Sider>
   );
 };

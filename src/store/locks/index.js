@@ -16,7 +16,7 @@ export const fetchLocks = (limit, q) => {
         url: fetchLocksURL(limit, q),
       });
       console.log("response --FETCH_LOCKS_COMPLETED--", response);
-      const { error } = response;
+      const { error, data } = response;
       if (error) {
         dispatch({
           type: FETCH_LOCKS_FAILED,
@@ -25,7 +25,7 @@ export const fetchLocks = (limit, q) => {
       } else {
         dispatch({
           type: FETCH_LOCKS_COMPLETED,
-          payload: { locks: response },
+          payload: { locks: data },
         });
       }
     } catch (err) {
@@ -39,7 +39,7 @@ export const fetchLocks = (limit, q) => {
 };
 
 const LocksReducer = (state = {}, action = {}) => {
-  const { type, payload = {} } = action;
+  const { type } = action;
   switch (type) {
     default: {
       return state;
