@@ -43,9 +43,11 @@ export const doRequest = async (requestData) => {
     console.log("error ----", error);
     if (error?.response?.status === 401) {
       message.error(`Token expired login again`, 8);
+    } else {
+      const { response: { data = {} } = {} } = error || {};
+      message.error(`${data.message}`, 8);
     }
     const { response: { data = {} } = {} } = error || {};
-    message.error(`${data.message}`, 8);
     return data;
   }
 };
