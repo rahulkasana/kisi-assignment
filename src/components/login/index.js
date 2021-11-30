@@ -34,10 +34,10 @@ const Login = () => {
             layout="vertical"
             labelCol={{ span: 16 }}
             wrapperCol={{ span: 24 }}
-            initialValues={{
-              username: "rkasana00@gmail.com",
-              password: "Mf@NLdt$.R6E7@T",
-            }}
+            // initialValues={{
+            //   username: "rkasana00@gmail.com",
+            //   password: "Mf@NLdt$.R6E7@T",
+            // }}
             onFinish={onFinish}
             autoComplete="off"
           >
