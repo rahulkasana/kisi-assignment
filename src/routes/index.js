@@ -9,7 +9,7 @@ const Global = lazy(() => import("./Global"));
 
 function AppRoutes() {
   const loadingState = () => {
-    return <Spin size="large" />;
+    return <div className='vh-100 vw-100 center'><Spin size="large" /></div>;
   };
   const dispatch = useDispatch();
   const [isLoggedIn, setLoggedIn] = useState(localStorage.getItem("secret"));
