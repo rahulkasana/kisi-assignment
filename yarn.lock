@@ -1207,13 +1207,6 @@
     "core-js-pure" "^3.19.0"
     "regenerator-runtime" "^0.13.4"
 
-"@babel/runtime@^7.0.0":
-  "integrity" "sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ=="
-  "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.16.3.tgz"
-  "version" "7.16.3"
-  dependencies:
-    "regenerator-runtime" "^0.13.4"
-
 "@babel/runtime@^7.10.1", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.4", "@babel/runtime@^7.11.1", "@babel/runtime@^7.11.2", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2", "@babel/runtime@7.12.1":
   "integrity" "sha512-J5AIf3vPj3UwXaAzb5j1xM4WAQDX3EMgemF8rjCP3SoW09LfRKAXQKt6CoVYl230P6iWdRcBbnLDDdnqWxZSCA=="
   "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.12.1.tgz"
@@ -1294,7 +1287,7 @@
     "exec-sh" "^0.3.2"
     "minimist" "^1.2.0"
 
-"@craco/craco@^5.5.0", "@craco/craco@^6.0.0", "@craco/craco@^6.4.2":
+"@craco/craco@^6.0.0", "@craco/craco@^6.4.2":
   "integrity" "sha512-egIooyvuzKM5dsvWe/U5ISyFpZwLnG9uuTF1fU4s/6b/hE8MvoxyaxKymQKgbtpfOZeH0ebtEP4cbH7xZ4XRbw=="
   "resolved" "https://registry.npmjs.org/@craco/craco/-/craco-6.4.2.tgz"
   "version" "6.4.2"
@@ -2535,7 +2528,7 @@
   "resolved" "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz"
   "version" "5.2.0"
 
-"antd@^4.17.2", "antd@>= 3.0.0":
+"antd@^4.17.2":
   "integrity" "sha512-1/xwj72mzg2ly5byvnxsgucEL5JMrinlsaAr4Y+vjobmTBSI9l9zOVkwwOG8kPIrFkhrzC1I42n6GZKnTwfZmg=="
   "resolved" "https://registry.npmjs.org/antd/-/antd-4.17.2.tgz"
   "version" "4.17.2"
@@ -2880,14 +2873,6 @@
   "version" "2.3.3"
   dependencies:
     "object.assign" "^4.1.0"
-
-"babel-plugin-import@^1.13.1":
-  "integrity" "sha512-1qCWdljJOrDRH/ybaCZuDgySii4yYrtQ8OJQwrcDqdt0y67N30ng3X3nABg6j7gR7qUJgcMa9OMhc4AGViDwWw=="
-  "resolved" "https://registry.npmjs.org/babel-plugin-import/-/babel-plugin-import-1.13.3.tgz"
-  "version" "1.13.3"
-  dependencies:
-    "@babel/helper-module-imports" "^7.0.0"
-    "@babel/runtime" "^7.0.0"
 
 "babel-plugin-istanbul@^6.0.0":
   "integrity" "sha512-Y1IQok9821cC9onCx5otgFfRm7Lm+I+wwxOx738M/WLPZ9Q42m4IG5W0FNX8WLL2gYMZo3JkuXIH2DOpWM+qwA=="
@@ -3646,11 +3631,6 @@
     "strip-ansi" "^6.0.0"
     "wrap-ansi" "^6.2.0"
 
-"clone@^2.1.2":
-  "integrity" "sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18="
-  "resolved" "https://registry.npmjs.org/clone/-/clone-2.1.2.tgz"
-  "version" "2.1.2"
-
 "co@^4.6.0":
   "integrity" "sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ="
   "resolved" "https://registry.npmjs.org/co/-/co-4.6.0.tgz"
@@ -3949,15 +3929,6 @@
     "path-type" "^4.0.0"
     "yaml" "^1.10.0"
 
-"craco-antd@^1.19.0":
-  "integrity" "sha512-MpbF2LQxb/POiR003oOkuAhHwpyRx1w5opyg7SA4/2og/FMRR/2oca/eqKYQ7vre2dOpt64gkQ5xWETktHWCQQ=="
-  "resolved" "https://registry.npmjs.org/craco-antd/-/craco-antd-1.19.0.tgz"
-  "version" "1.19.0"
-  dependencies:
-    "babel-plugin-import" "^1.13.1"
-    "craco-less" "1.17.0"
-    "less-vars-to-js" "^1.3.0"
-
 "craco-less@^1.20.0":
   "integrity" "sha512-oP7kMRFOwwCPAlS+RBfA0yt9qAfSH8EOzJOQyzspVOECDtATTLXYyEYd0ghoybbReVRZbOmGxNtPWh4ALpVRng=="
   "resolved" "https://registry.npmjs.org/craco-less/-/craco-less-1.20.0.tgz"
@@ -3965,14 +3936,6 @@
   dependencies:
     "less" "^4.1.1"
     "less-loader" "^7.3.0"
-
-"craco-less@1.17.0":
-  "integrity" "sha512-G+GPEKPPKiSvYDsnQWuj1C4CIuaY8w+iHvULHkNf5QWLE0LkPfSRf3frhRDJjFxtkThpLPSLjWndD9kx8bCWzw=="
-  "resolved" "https://registry.npmjs.org/craco-less/-/craco-less-1.17.0.tgz"
-  "version" "1.17.0"
-  dependencies:
-    "less" "^3.11.1"
-    "less-loader" "^6.1.0"
 
 "create-ecdh@^4.0.0":
   "integrity" "sha512-mf+TCx8wWc9VpuxfP2ht0iSISLZnt0JgWlrOKZiNqyUZWnjIaCIVNQArMHnCZKfEYRg6IM7A+NeJoN8gf/Ws0A=="
@@ -7409,16 +7372,6 @@
     "lodash" "^4.17.5"
     "webpack-sources" "^1.1.0"
 
-"less-loader@^6.1.0":
-  "integrity" "sha512-Cl5h95/Pz/PWub/tCBgT1oNMFeH1WTD33piG80jn5jr12T4XbxZcjThwNXDQ7AG649WEynuIzO4b0+2Tn9Qolg=="
-  "resolved" "https://registry.npmjs.org/less-loader/-/less-loader-6.2.0.tgz"
-  "version" "6.2.0"
-  dependencies:
-    "clone" "^2.1.2"
-    "less" "^3.11.3"
-    "loader-utils" "^2.0.0"
-    "schema-utils" "^2.7.0"
-
 "less-loader@^7.3.0":
   "integrity" "sha512-Mi8915g7NMaLlgi77mgTTQvK022xKRQBIVDSyfl3ErTuBhmZBQab0mjeJjNNqGbdR+qrfTleKXqbGI4uEFavxg=="
   "resolved" "https://registry.npmjs.org/less-loader/-/less-loader-7.3.0.tgz"
@@ -7427,29 +7380,6 @@
     "klona" "^2.0.4"
     "loader-utils" "^2.0.0"
     "schema-utils" "^3.0.0"
-
-"less-vars-to-js@^1.3.0":
-  "integrity" "sha512-xeiLLn/IMCGtdyCkYQnW8UuzoW2oYMCKg9boZRaGI58fLz5r90bNJDlqGzmVt/1Uqk75/DxIVtQSNCMkE5fRZQ=="
-  "resolved" "https://registry.npmjs.org/less-vars-to-js/-/less-vars-to-js-1.3.0.tgz"
-  "version" "1.3.0"
-  dependencies:
-    "strip-json-comments" "^2.0.1"
-
-"less@^3.11.1", "less@^3.11.3":
-  "integrity" "sha512-SwA1aQXGUvp+P5XdZslUOhhLnClSLIjWvJhmd+Vgib5BFIr9lMNlQwmwUNOjXThF/A0x+MCYYPeWEfeWiLRnTw=="
-  "resolved" "https://registry.npmjs.org/less/-/less-3.13.1.tgz"
-  "version" "3.13.1"
-  dependencies:
-    "copy-anything" "^2.0.1"
-    "tslib" "^1.10.0"
-  optionalDependencies:
-    "errno" "^0.1.1"
-    "graceful-fs" "^4.1.2"
-    "image-size" "~0.5.0"
-    "make-dir" "^2.1.0"
-    "mime" "^1.4.1"
-    "native-request" "^1.0.5"
-    "source-map" "~0.6.0"
 
 "less@^3.5.0 || ^4.0.0", "less@^4.1.1":
   "integrity" "sha512-EoQp/Et7OSOVu0aJknJOtlXZsnr8XE8KwuzTHOLeVSEx8pVWUICc8Q0VYRHgzyjX78nMEyC/oztWFbgyhtNfDA=="
@@ -8048,11 +7978,6 @@
     "regex-not" "^1.0.0"
     "snapdragon" "^0.8.1"
     "to-regex" "^3.0.1"
-
-"native-request@^1.0.5":
-  "integrity" "sha512-uZ5rQaeRn15XmpgE0xoPL8YWqcX90VtCFglYwAgkvKM5e8fog+vePLAhHxuuv/gRkrQxIeh5U3q9sMNUrENqWw=="
-  "resolved" "https://registry.npmjs.org/native-request/-/native-request-1.1.0.tgz"
-  "version" "1.1.0"
 
 "native-url@^0.2.6":
   "integrity" "sha512-k4bDC87WtgrdD362gZz6zoiXQrl40kYlBmpfmSjwRO1VU0V5ccwJTlxuE72F6m3V0vc1xOf6n3UCP9QyerRqmA=="
@@ -10163,7 +10088,7 @@
   dependencies:
     "history" "^5.1.0"
 
-"react-scripts@^3.3.0", "react-scripts@^3.4.3", "react-scripts@^4.0.0", "react-scripts@4.0.3":
+"react-scripts@^4.0.0", "react-scripts@4.0.3":
   "integrity" "sha512-S5eO4vjUzUisvkIPB7jVsKtuH2HhWcASREYWHAQ1FP5HyCv3xgn+wpILAEWkmy+A+tTNbSZClhxjT3qz6g4L1A=="
   "resolved" "https://registry.npmjs.org/react-scripts/-/react-scripts-4.0.3.tgz"
   "version" "4.0.3"
@@ -11475,11 +11400,6 @@
   dependencies:
     "min-indent" "^1.0.0"
 
-"strip-json-comments@^2.0.1":
-  "integrity" "sha1-PFMZQukIwml8DsNEhYwobHygpgo="
-  "resolved" "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-2.0.1.tgz"
-  "version" "2.0.1"
-
 "strip-json-comments@^3.1.0", "strip-json-comments@^3.1.1":
   "integrity" "sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig=="
   "resolved" "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-3.1.1.tgz"
@@ -11801,11 +11721,6 @@
     "json5" "^1.0.1"
     "minimist" "^1.2.0"
     "strip-bom" "^3.0.0"
-
-"tslib@^1.10.0":
-  "integrity" "sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg=="
-  "resolved" "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
-  "version" "1.14.1"
 
 "tslib@^1.8.1":
   "integrity" "sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg=="
