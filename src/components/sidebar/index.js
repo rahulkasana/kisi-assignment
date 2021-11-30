@@ -8,7 +8,7 @@ import { PATHS } from "../../constants";
 const { Sider } = Layout;
 
 const Sidebar = (props) => {
-  const [collapsed, toggleCollapsed] = useState(false);
+  const [collapsed, toggleCollapsed] = useState(true);
   const isGroups = useMatch(PATHS.GROUPS);
   const isLocks = useMatch(PATHS.LOCKS);
 
