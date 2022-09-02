@@ -5,7 +5,7 @@ import store from "./store";
 import Routes from "./routes";
 import { useEffect } from "react";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics,logEvent } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -33,6 +33,8 @@ function App() {
     // trackDownloadEvent();
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
+    logEvent(analytics, 'notification_received');
+
   }, []);
   return (
     <Provider store={store}>
