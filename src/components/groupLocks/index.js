@@ -7,7 +7,7 @@ import {
 } from "../../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGroupLocks } from "../../store/groupLocks";
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import "./styles.less";
 import { open } from "../../store/modal";
 import { DeleteOutlined, InfoCircleOutlined } from "@ant-design/icons";

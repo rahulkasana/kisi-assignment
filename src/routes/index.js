@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import { BrowserRouter } from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import { Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { initialize } from "../store/kisi";
