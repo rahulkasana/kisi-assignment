@@ -30,7 +30,7 @@ const AssignLocks = () => {
         )
       );
     }
-    window.gtag('event','assigned_locks')
+    // window.gtag('event','assigned_locks')
     Promise.all(p).then((values) => {
       setLoading(false);
       dispatch(close());

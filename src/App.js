@@ -31,8 +31,8 @@ function App() {
   // };
   useEffect(() => {
     // trackDownloadEvent();
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
+    // const app = initializeApp(firebaseConfig);
+    // const analytics = getAnalytics(app);
     // logEvent(analytics, 'notification_received');
 
   }, []);
