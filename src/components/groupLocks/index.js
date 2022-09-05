@@ -3,7 +3,7 @@ import { Button, Col, List, Row, Tooltip } from "antd";
 import {
   DEFAULT_PAGE_NUMBER,
   DEFAULT_PAGE_SIZE,
-  MODALS,
+  MODALS, PATHS,
 } from "../../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGroupLocks } from "../../store/groupLocks";
@@ -11,8 +11,10 @@ import { useParams} from "react-router-dom";
 import "./styles.less";
 import { open } from "../../store/modal";
 import { DeleteOutlined, InfoCircleOutlined } from "@ant-design/icons";
+import ReactGA from "react-ga4";
 
 const GroupLocks = () => {
+  // ReactGA.send({ hitType: "pageview", page: PATHS.GROUP_LOCKS });
   const { groupId } = useParams();
   const [current, setCurrentPage] = useState(DEFAULT_PAGE_NUMBER);
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);

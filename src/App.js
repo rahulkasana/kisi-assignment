@@ -1,4 +1,5 @@
 import { Provider } from "react-redux";
+// import ReactGA from "react-ga4";
 // import gtag from "ga-gtag";
 import "./App.less";
 import store from "./store";
@@ -31,8 +32,9 @@ function App() {
   // };
   useEffect(() => {
     // trackDownloadEvent();
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
+    // const app = initializeApp(firebaseConfig);
+    // const analytics = getAnalytics(app);
+    // ReactGA.initialize(firebaseConfig.measurementId);
     // logEvent(analytics, 'notification_received');
 
   }, []);
