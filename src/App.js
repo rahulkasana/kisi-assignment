@@ -6,6 +6,7 @@ import Routes from "./routes";
 import { useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics,logEvent } from "firebase/analytics";
+import { getPerformance } from "firebase/performance";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -31,7 +32,8 @@ function App() {
   // };
   useEffect(() => {
     // trackDownloadEvent();
-    // const app = initializeApp(firebaseConfig);
+    const app = initializeApp(firebaseConfig);
+    const perf = getPerformance(app);
     // const analytics = getAnalytics(app);
     // logEvent(analytics, 'notification_received');
 
