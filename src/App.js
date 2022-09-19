@@ -30,10 +30,12 @@ function App() {
   //     title: "User on website",
   //   });
   // };
+
   useEffect(() => {
     // trackDownloadEvent();
-    const app = initializeApp(firebaseConfig);
-    const perf = getPerformance(app);
+    Object.freeze()
+    // const app = initializeApp(firebaseConfig);
+    // const perf = getPerformance(app);
     // const analytics = getAnalytics(app);
     // logEvent(analytics, 'notification_received');
 
